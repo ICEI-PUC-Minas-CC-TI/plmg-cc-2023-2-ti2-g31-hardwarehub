@@ -1,18 +1,20 @@
-# [Nome do projeto]
+# [HardwareHub]
 
-[Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.]
+[Projeto de um site para pessoas leigas entenderem de uma forma simples
+sobre o mundo da computação e conseguirem escolher qual o computador
+ideal para elas]
 
 ## Alunos integrantes da equipe
 
-* [Nome completo do aluno 1]
-* [Nome completo do aluno 2]
-* [Nome completo do aluno 3]
-* [Nome completo do aluno 4]
+* [Gabriel Praes Bernardes Nunes]
+* [Andre Oliveira Quintao]
+* [Bruno Braga Guimarães Alves]
+* [João Victor Filardi Pinto]
 
 ## Professores responsáveis
 
-* [Nome completo do professor 1]
-* [Nome completo do professor 2]
+* [Wladmir Cardoso Brandao]
+* [Amália Soares Vieira de Vasconcelos]
 
 ## Instruções de utilização
 
