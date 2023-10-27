@@ -1,0 +1,316 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    
+}
+.navbar{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+nav{
+    flex: 1; 
+    text-align: right;
+}
+nav ul{
+    display: inline-block;
+    list-style-type:none;
+
+}
+nav ul li{
+    display: inline-block;
+    margin-right: 20px;
+}
+a {
+    text-decoration: none;
+    color: #555;
+}
+p{
+    color: #555;
+}
+.conteiner{
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+
+}
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;    
+}
+.col-2{
+    flex-basis: 50%;
+    min-width: 300px;
+}
+.col-2 img{
+    max-width: 100%;
+    padding: 50px 0px;
+    padding-left: 200px;
+}
+.col-2 h1{
+    font-size: 50px;
+    line-height: 60px;
+    margin: 25px 0px;
+}
+.btn{
+    display: inline-block;
+    background:#ff523b;
+    color: #fff;
+    padding: 8px 30px;
+    margin: 30px 0px;
+    border-radius: 30px;
+    transition: background 0.5s;
+}
+.btn:hover{
+    background: #563434;
+}
+.header{
+    background: radial-gradient(rgb(20, 81, 204), rgb(11, 4, 100));
+}
+.header .row{
+    margin-top: 70px;
+}
+.categories{
+    margin: 70px 0px;
+
+}
+.col-3{
+    flex-basis: 30%;
+    min-width: 250px;
+    margin-bottom: 30px;
+}
+.col-3 img{
+    width: 100%;
+}
+small-conteiner{
+    max-width: 1080px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.col-4{
+    flex-basis: 25%;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 50px;    
+    transition: trasform 0.5s;
+}
+.col-4 img{
+    width: 100%;
+    
+}
+.title{
+    text-align: center;
+    margin: 0 auto 80px;
+    position: relative;
+    line-height: 60px;
+    color: #555;
+}
+.title::after{
+    content: '';
+    background: #ff523b;
+    width: 80px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+h4{
+    color: #555;
+    font-weight: normal;
+
+}
+.col-4 p{
+    font-size: 14px;
+}
+.rating .fa{
+    color: #ff523b;
+}
+.col-4:hover{
+    transform: translateY(-5px);
+}
+
+.destaque{
+    background: radial-gradient(rgb(20, 81, 204), rgb(11, 4, 100));
+    margin-top: 80px;
+    padding: 30px 0px;
+}
+.destaque small{
+    font-weight: 700;
+}
+.col-4 p {
+    color: black;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(rgb(20, 81, 204), rgb(11, 4, 100));
+}
+#ps{
+    background: #fff;
+    margin: 0;
+
+}
+#ps h2{
+    color: black;    
+    
+}
+#sect{
+    
+    margin-bottom: 20px;
+    margin-right: 0px;
+    /*background-color:rgba(39, 24, 24, 0.726);*/
+}
+#sect p{
+    color: #fff;
+}
+#sect2{
+    margin-bottom: 20px;
+    
+    margin-left: 0px;
+    background: #fff;
+}
+.sobre p{
+    margin-left: 20px;
+    color: #fff;
+}
+.sobre h6{
+    color: black;
+}
+
+.sobre h2{
+    padding-right: 40px;
+}
+h2{
+    margin-left: 40px;
+    padding: 20px; margin-bottom: 20px;
+    color: #dadee7;
+}
+section {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+article {
+    
+    border: 1px solid rgba(204, 204, 204, 0);
+    padding: 10px;
+    margin: 10px;
+    flex-basis: 200px;
+    text-align: center;
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+.sobre{
+    color: #fff;
+}
+.menu{
+    display: flex;
+}
+.menu li{
+    list-style: none;
+    margin-left: 10px;
+}
+.modal-body img{ width: 100%;}
+
+
+.titulo{
+    padding-left: 8%;
+}
+
+.texto_principal{ background: #e4e3e3; padding: 20px; margin-top: 20px; margin-bottom: 20px;}
+
+.PrimeT{
+    
+    margin-left: 0px;
+    background: #202633; 
+    color: #f5f5f5;
+    padding-top: 30px; 
+    margin-top: 0px; 
+    margin-bottom: 0px;
+    
+}
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+select{
+    font-family: 'FontAwesome' , 'TATSanaChon';
+}
+
+.fc select option{
+    margin-right: 110px;
+    
+}
+.card_area > div{ margin-bottom: 30px; margin-left: 10px; margin-right: 10px; }
+
+.card_area img { width: 100%; }
+.card_area{
+    margin-left: 20px;
+}
+
+.card_area1 > div{ margin-bottom: 30px; margin-left: 10px; margin-right: 10px; }
+.card_area1 img { width: 100%; }
+.card_area1{
+    margin-left: 0px;
+    background-image: url(img/4373018.jpg);
+    background-size: 120%;
+}
+
+
+
+
+
+
+.rodape{
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+    padding: 10px;
+}
+
+
+span{
+    font-weight: bold;
+}
+
+#botao{
+    color: black;
+    font-size: medium;
+    margin-left: 132px;
+}
+
+#compra{
+    text-align: center;
+    font-size: large;
+    
+}
+
+#venda{
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+
+
+/*
+
+
+*/
