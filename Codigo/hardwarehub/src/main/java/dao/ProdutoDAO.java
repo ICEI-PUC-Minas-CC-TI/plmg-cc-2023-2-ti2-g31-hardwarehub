@@ -112,11 +112,11 @@ public class ProdutoDAO extends DAO {
 		return status;
 	}
 	
-	public boolean delete(String nome) {
+	public boolean delete(int ID) {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			String sql = "DELETE FROM produto WHERE nome = " + nome;
+			String sql = "DELETE FROM produto WHERE u_Id = " + ID;
 			System.out.println(sql);
 			st.executeUpdate(sql);
 			st.close();
@@ -143,4 +143,18 @@ public class ProdutoDAO extends DAO {
 		}
 		return resp;
 	}	
+	
+	public int getMaxID() {
+		try {
+			Statement st = conexao.createStatement();
+			String sql = "SELECT MAX(id) AS p_id FROM produto";
+			ResultSet rs = st.executeQuery(sql);
+			int maxID = rs.getInt("id");
+			return maxID;
+			
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			return 0;
+		}
+	}
 }

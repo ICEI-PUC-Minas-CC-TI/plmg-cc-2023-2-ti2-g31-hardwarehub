@@ -44,7 +44,7 @@ public class UsuarioDAO extends DAO {
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery(sql);	
 	        if(rs.next()){            
-	        	 usuario = new Usuario(rs.getInt("ID"), rs.getString("nome"), rs.getString("CPF"), rs.getString("email"), rs.getString("senha"), rs.getString("dataDeNascimento"), rs.getString("sexo").charAt(0));
+	        	 usuario = new Usuario(rs.getInt("u_Id"), rs.getString("u_nome"), rs.getString("u_CPF"), rs.getString("u_email"), rs.getString("u_senha"), rs.getString("u_dataDeNascimento"), rs.getString("u_sexo").charAt(0));
 	        }
 	        st.close();
 		} catch (Exception e) {
@@ -60,17 +60,17 @@ public class UsuarioDAO extends DAO {
 
 	
 	public List<Usuario> getOrderByNome() {
-		return get("nome");		
+		return get("u_nome");		
 	}
 	
 	
 	public List<Usuario> getOrderByCPF() {
-		return get("CPF");		
+		return get("u_CPF");		
 	}
 	
 	
 	public List<Usuario> getOrderByEmail() {
-		return get("email");		
+		return get("u_email");		
 	}
 	
 	
@@ -84,7 +84,7 @@ public class UsuarioDAO extends DAO {
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
-	        	Usuario u = new Usuario(rs.getInt("ID"), rs.getString("nome"), rs.getString("CPF"), rs.getString("email"), rs.getString("senha"), rs.getString("dataDeNascimento"), rs.getString("sexo").charAt(0));
+	        	Usuario u = new Usuario(rs.getInt("u_Id"), rs.getString("u_nome"), rs.getString("u_CPF"), rs.getString("u_email"), rs.getString("u_senha"), rs.getString("u_dataDeNascimento"), rs.getString("u_sexo").charAt(0));
 	            usuarios.add(u);
 	        }
 	        st.close();
@@ -100,11 +100,11 @@ public class UsuarioDAO extends DAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM usuario WHERE usuario.sexo LIKE 'M'";
+			String sql = "SELECT * FROM usuario WHERE u_sexo LIKE 'M'";
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
-	        	Usuario u = new Usuario(rs.getInt("ID"), rs.getString("nome"), rs.getString("CPF"), rs.getString("email"), rs.getString("senha"), rs.getString("dataDeNascimento"), rs.getString("sexo").charAt(0));
+	        	Usuario u = new Usuario(rs.getInt("u_Id"), rs.getString("u_nome"), rs.getString("u_CPF"), rs.getString("u_email"), rs.getString("u_senha"), rs.getString("u_dataDeNascimento"), rs.getString("u_sexo").charAt(0));
 	            usuarios.add(u);
 	        }
 	        st.close();
@@ -132,11 +132,11 @@ public class UsuarioDAO extends DAO {
 		return status;
 	}
 	
-	public boolean delete(String nome) {
+	public boolean delete(int ID) {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			String sql = "DELETE FROM usuario WHERE nome = " + nome;
+			String sql = "DELETE FROM usuario WHERE u_Id = " + ID;
 			System.out.println(sql);
 			st.executeUpdate(sql);
 			st.close();
@@ -148,12 +148,12 @@ public class UsuarioDAO extends DAO {
 	}
 	
 	
-	public boolean autenticar(String email, String senha) {
+	public boolean autenticar(String nome, String senha) {
 		boolean resp = false;
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM usuario WHERE email LIKE '" + email + "' AND senha LIKE '" + senha  + "'";
+			String sql = "SELECT * FROM usuario WHERE u_nome LIKE '" + nome + "' AND u_senha LIKE '" + senha  + "'";
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery(sql);
 			resp = rs.next();
@@ -163,4 +163,18 @@ public class UsuarioDAO extends DAO {
 		}
 		return resp;
 	}	
+	
+	public int getMaxID() {
+		try {
+			Statement st = conexao.createStatement();
+			String sql = "SELECT MAX(u_id) AS maxID FROM usuario";
+			ResultSet rs = st.executeQuery(sql);
+			int maxID = rs.getInt("maxID");
+			return maxID;
+			
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			return 0;
+		}
+	}
 }
