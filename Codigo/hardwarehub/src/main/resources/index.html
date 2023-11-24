@@ -19,9 +19,20 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
     integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body style="background: radial-gradient(rgb(255, 255, 255),rgb(255, 255, 255))!important;">
+
+  <a id="botao-flutuante" onclick="mostrarChatbot()" target='_blank'><i class="fab fa-rocketchat"></i></a>
+
+    <div id="chatbot">
+      <div class="botao">
+        <h3 id="fontechat">ChatBot</h3>
+        <button id="botfechar" onclick="fecharChatbot()">X</button>
+      </div>
+      <iframe id="ifr" src="https://app.chatgptbuilder.io/webchat/?p=1778236&ref=1684698787972" ></iframe>
+    </div>
 
   <div class="header">
     <div class="conteiner">
@@ -132,5 +143,17 @@
     <a href="index.html"><img src="imagens/logo3.png" alt="" width="150px"></a>
   </div>
 </div>
+
+<script>
+  function mostrarChatbot() {
+    document.getElementById('botao-flutuante').style.display = 'none';
+    document.getElementById('chatbot').style.display = 'inline-block';
+  }
+
+  function fecharChatbot() {
+    document.getElementById('chatbot').style.display = 'none';
+    document.getElementById('botao-flutuante').style.display = 'block';
+  }
+</script>
 
 </html>
