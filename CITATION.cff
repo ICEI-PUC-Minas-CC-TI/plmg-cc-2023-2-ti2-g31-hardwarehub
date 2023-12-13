@@ -1,31 +1,27 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: Hardware Hub
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Braga Guimarães Alves
+    given-names: Bruno
+  - family-names: Filardi
+    given-names: João Victor
+  - family-names: Praes Bernardes Nunes
+    given-names: Gabriel
+  - family-names: Oliveira Quintão
+    given-names: André
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Vasconcelos
+    given-names: Amália
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Cardoso Brandão
+    given-names: Wladmir
 keywords:
-  - 
-  - 
-repository-code: 
+  - Informação
+  - Compra e venda
+repository-code: https://github.com/ICEI-PUC-Minas-CC-TI/plmg-cc-2023-2-ti2-g31-hardwarehub/tree/master
 license: CC-BY-4.0
 version: 1.0.0
-date-released: 2022-07-14
+date-released: 2023-12-12
