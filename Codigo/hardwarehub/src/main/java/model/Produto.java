@@ -1,5 +1,8 @@
 package model;
 
+// COMENTÁRIO DE CODE REVIEW: Sugestão de melhoria - A classe Produto não possui validações nos setters.
+// Considere adicionar validações para garantir integridade dos dados (ex: preço não pode ser negativo, nome não pode ser vazio).
+// Benefícios: Prevenir estados inválidos do objeto, falhas silenciosas em tempo de execução e garantir consistência dos dados.
 public class Produto {
 	private int ID;
 	private String nome;
@@ -67,6 +70,11 @@ public class Produto {
 		this.preco = preco;
 	}
 	
+	// COMENTÁRIO DE CODE REVIEW: Sugestão de melhoria - Falta implementação do método toString().
+	// Um método toString() bem implementado facilita debugging e logging.
+	// Sugestão: Implementar toString() para retornar uma representação legível do produto com todos os seus atributos.
+	// Exemplo: return "Produto [ID=" + ID + ", nome=" + nome + ", ano=" + ano + ", tempoDeUso=" + tempoDeUso + ", preco=" + preco + "]";
+	// Benefícios: Facilita debugging, melhora logging e torna o código mais legível durante desenvolvimento e manutenção.
 	
 }
 	

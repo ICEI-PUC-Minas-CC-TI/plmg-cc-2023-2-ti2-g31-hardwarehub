@@ -18,6 +18,13 @@ public class UsuarioService {
 		usuarioDAO = new UsuarioDAO();
 	}
 
+	// COMENTÁRIO DE CODE REVIEW: Problemas críticos de segurança e validação.
+	// 1. Senha não está sendo hasheada antes de salvar - armazenamento em texto plano é vulnerabilidade crítica.
+	// 2. Falta validação de CPF, email e outros campos obrigatórios.
+	// 3. Não verifica se os parâmetros são nulos antes de usar - pode causar NullPointerException.
+	// 4. Falta tratamento de NumberFormatException.
+	// Sugestão: Hash da senha com bcrypt, validar todos os campos e retornar 400 Bad Request para entradas inválidas.
+	// Benefícios: Protege dados sensíveis, previne erros de runtime, garante integridade dos dados e melhora segurança geral.
 	public Object add(Request request, Response response) {
 		int ID = Integer.parseInt(request.queryParams("ID"));
 		String nome = request.queryParams("nome");
@@ -37,6 +44,12 @@ public class UsuarioService {
 		return ID;
 	}
 
+	// COMENTÁRIO DE CODE REVIEW: Problemas críticos de segurança e nomenclatura.
+	// 1. VULNERABILIDADE CRÍTICA: Está retornando a senha do usuário na resposta - nunca exponha senhas em APIs.
+	// 2. Tag XML incorreta: usando "<produto>" em vez de "<usuario>".
+	// 3. Falta sanitização dos dados - pode causar XML Injection.
+	// Sugestão: Remover campo senha da resposta e corrigir tags XML para "usuario".
+	// Benefícios: Protege dados sensíveis, melhora segurança da API, evita XML Injection e garante resposta correta.
 	public Object get(Request request, Response response) {
 		int id = Integer.parseInt(request.params(":ID"));
 		
@@ -57,7 +70,7 @@ public class UsuarioService {
             		"</produto>\n";
         } else {
             response.status(404); // 404 Not found
-            return "Usuario " + id + " n�o encontrado.";
+            return "Usuario " + id + " n�o encontrado.";
         }
 
 	}
@@ -80,11 +93,16 @@ public class UsuarioService {
             return id;
         } else {
             response.status(404); // 404 Not found
-            return "Produto n�o encontrado.";
+            return "Produto n�o encontrado.";
         }
 
 	}
 
+	// COMENTÁRIO DE CODE REVIEW: Inconsistência entre busca e deleção.
+	// O método busca usuário por ID mas deleta por NOME (usuario.getNome()).
+	// Nomes podem se repetir, causando deleção incorreta. O método UsuarioDAO.delete() espera ID.
+	// Sugestão: Alterar para usuarioDAO.delete(id) para manter consistência e precisão.
+	// Benefícios: Garante deleção precisa, evita deleções incorretas e mantém consistência na identificação de usuários.
 	public Object remove(Request request, Response response) {
         int id = Integer.parseInt(request.params(":ID"));
 
@@ -98,7 +116,7 @@ public class UsuarioService {
         	return id;
         } else {
             response.status(404); // 404 Not found
-            return "Produto n�o encontrado.";
+            return "Produto n�o encontrado.";
         }
 	}
 
