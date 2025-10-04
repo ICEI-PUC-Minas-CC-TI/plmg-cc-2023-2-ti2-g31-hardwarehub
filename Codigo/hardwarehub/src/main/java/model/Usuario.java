@@ -90,6 +90,13 @@ public class Usuario {
 		this.sexo = sexo;
 	}
 	
+	// COMENTÁRIO CODE REVIEW #7: Método toString() inconsistente
+	// PROBLEMA: O método toString() não inclui o campo ID e tem formatação inconsistente
+	// SUGESTÃO: Padronizar o toString() incluindo todos os campos relevantes
+	// BENEFÍCIOS DA MUDANÇA:
+	// - Melhor representação textual do objeto
+	// - Facilita debugging e logging
+	// - Consistência com padrões de desenvolvimento
 	@Override
 	public String toString() {
 		return "Usuario [nome=" + nome + ", CPF=" + CPF + ", sexo=" + sexo + ", email=" + email + ", senha=" + senha + "Data de Nascimento" + dataDeNascimento + "]";

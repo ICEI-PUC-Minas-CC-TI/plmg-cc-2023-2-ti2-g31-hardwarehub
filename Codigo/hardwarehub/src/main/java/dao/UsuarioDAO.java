@@ -22,13 +22,22 @@ public class UsuarioDAO extends DAO {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
+			// COMENTÁRIO CODE REVIEW #1: Vulnerabilidade crítica de SQL Injection
+			// PROBLEMA: Consultas SQL construídas através de concatenação de strings sem sanitização
+			// SUGESTÃO: Implementar PreparedStatements para todas as operações de banco de dados
 			String sql = "INSERT INTO usuario (u_ID , u_nome, u_CPF, u_email, u_senha, u_dataDeNascimento, u_sexo) "
 				       + "VALUES ('" + usuario.getID() + "', '" +usuario.getNome() + "', '" + usuario.getCPF() + "', '" + usuario.getEmail() + "', '" + usuario.getSenha() + "', '" + usuario.getDataDeNascimento() + "', '" + usuario.getSexo() + "');";
+			// COMENTÁRIO CODE REVIEW #3: Exposição de informações sensíveis
+			// PROBLEMA: Consultas SQL sendo impressas no console, expondo dados sensíveis
+			// SUGESTÃO: Remover ou usar logging condicional apenas em ambiente de desenvolvimento
 			System.out.println(sql);
 			st.executeUpdate(sql);
 			st.close();
 			status = true;
 		} catch (SQLException u) {  
+			// COMENTÁRIO CODE REVIEW #11: Tratamento inadequado de exceções
+			// PROBLEMA: SQLException está sendo encapsulada em RuntimeException sem contexto adequado
+			// SUGESTÃO: Criar exceções customizadas ou tratar adequadamente
 			throw new RuntimeException(u);
 		}
 		return status;
@@ -153,7 +162,13 @@ public class UsuarioDAO extends DAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			// 🔒 COMENTÁRIO CODE REVIEW #1: Vulnerabilidade crítica de SQL Injection
+			// PROBLEMA: Consultas SQL construídas através de concatenação de strings sem sanitização
+			// SUGESTÃO: Implementar PreparedStatements para todas as operações de banco de dados
 			String sql = "SELECT * FROM usuario WHERE u_nome LIKE '" + nome + "' AND u_senha LIKE '" + senha  + "'";
+			// COMENTÁRIO CODE REVIEW #3: Exposição de informações sensíveis
+			// PROBLEMA: Consultas SQL sendo impressas no console, expondo dados sensíveis
+			// SUGESTÃO: Remover ou usar logging condicional apenas em ambiente de desenvolvimento
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery(sql);
 			resp = rs.next();

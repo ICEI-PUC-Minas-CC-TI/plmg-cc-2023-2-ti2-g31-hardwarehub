@@ -15,10 +15,24 @@ public class ProdutoService {
 	private ProdutoDAO produtoDAO;
 
 	public ProdutoService() {
+		// COMENTÁRIO CODE REVIEW #5: Falta de injeção de dependência
+		// PROBLEMA: As classes Service estão criando instâncias dos DAOs diretamente, criando alto acoplamento
+		// SUGESTÃO: Implementar injeção de dependência através de construtor ou framework como Spring
+		// BENEFÍCIOS DA MUDANÇA:
+		// - Redução do acoplamento entre camadas
+		// - Facilita criação de testes unitários com mocks
+		// - Melhor flexibilidade para substituir implementações
 		produtoDAO = new ProdutoDAO();
 	}
 
 	public Object add(Request request, Response response) {
+		// COMENTÁRIO CODE REVIEW #10: Falta de validação de entrada
+		// PROBLEMA: Não há validação dos parâmetros recebidos via request antes de processar
+		// SUGESTÃO: Implementar validação de entrada para todos os campos obrigatórios
+		// BENEFÍCIOS DA MUDANÇA:
+		// - Prevenção de erros em tempo de execução
+		// - Melhor segurança contra dados maliciosos
+		// - Melhor experiência do usuário com mensagens de erro claras
 		int ID = Integer.parseInt(request.queryParams("ID"));
 		String nome = request.queryParams("nome");
 		int ano = Integer.parseInt(request.queryParams("ano"));
@@ -53,7 +67,7 @@ public class ProdutoService {
             		"</produto>\n";
         } else {
             response.status(404); // 404 Not found
-            return "Produto " + id + " n�o encontrado.";
+            return "Produto " + id + " n�o encontrado.";
         }
 
 	}
@@ -74,7 +88,7 @@ public class ProdutoService {
             return id;
         } else {
             response.status(404); // 404 Not found
-            return "Produto n�o encontrado.";
+            return "Produto n�o encontrado.";
         }
 
 	}
@@ -92,11 +106,18 @@ public class ProdutoService {
         	return id;
         } else {
             response.status(404); // 404 Not found
-            return "Produto n�o encontrado.";
+            return "Produto n�o encontrado.";
         }
 	}
 
 	public Object getAll(Request request, Response response) {
+		// COMENTÁRIO CODE REVIEW #16: Uso inadequado de StringBuffer
+		// PROBLEMA: StringBuffer sendo usado para operações simples onde StringBuilder seria mais eficiente
+		// SUGESTÃO: Usar StringBuilder para operações não thread-safe ou considerar usar bibliotecas de serialização XML
+		// BENEFÍCIOS DA MUDANÇA:
+		// - Melhor performance em operações não thread-safe
+		// - Código mais limpo e moderno
+		// - Melhor uso de recursos de memória
 		StringBuffer returnValue = new StringBuffer("<produtos type=\"array\">");
 		for (Produto produto : produtoDAO.get()) {
 			returnValue.append("\n<produto>\n" +  
