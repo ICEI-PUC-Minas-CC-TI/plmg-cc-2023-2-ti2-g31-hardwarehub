@@ -1,6 +1,12 @@
 package model;
 
-
+// COMENTÁRIO DE CODE REVIEW: Sugestão de melhoria - A classe Usuario armazena dados sensíveis sem validação ou proteção.
+// 1. Falta validação de CPF (formato e dígitos verificadores).
+// 2. Falta validação de email (formato válido).
+// 3. Campo senha não deveria estar em texto plano - sempre armazenar hash.
+// 4. Data de nascimento como String dificulta cálculos de idade - considere usar LocalDate.
+// Sugestão: Implementar validações nos setters e usar tipos mais apropriados.
+// Benefícios: Garante integridade dos dados, melhora segurança, facilita validações e cálculos, e previne erros de entrada.
 public class Usuario {
 	private int ID;
 	private String nome;
@@ -90,6 +96,11 @@ public class Usuario {
 		this.sexo = sexo;
 	}
 	
+	// COMENTÁRIO DE CODE REVIEW: Problema de segurança - Exposição de senha no toString().
+	// O método toString() está expondo a senha do usuário, o que é uma falha grave de segurança.
+	// Logs, stacktraces ou debuggers podem expor senhas acidentalmente.
+	// Sugestão: Remover o campo senha do toString() ou substituir por "****".
+	// Benefícios: Previne vazamento de credenciais, melhora segurança geral e evita exposição acidental de dados sensíveis.
 	@Override
 	public String toString() {
 		return "Usuario [nome=" + nome + ", CPF=" + CPF + ", sexo=" + sexo + ", email=" + email + ", senha=" + senha + "Data de Nascimento" + dataDeNascimento + "]";

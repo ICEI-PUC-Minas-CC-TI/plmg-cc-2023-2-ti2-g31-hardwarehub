@@ -18,6 +18,11 @@ public class UsuarioDAO extends DAO {
 	}
 	
 	
+	// COMENTÁRIO DE CODE REVIEW: Vulnerabilidade crítica de segurança - SQL Injection.
+	// A concatenação direta de valores permite ataques de SQL Injection, especialmente perigoso para dados sensíveis como senhas.
+	// Sugestão: Usar PreparedStatement com parâmetros e garantir que a senha já esteja hasheada antes de chegar no DAO.
+	// Exemplo: PreparedStatement ps = conexao.prepareStatement("INSERT INTO usuario (u_ID, u_nome, u_CPF, u_email, u_senha, u_dataDeNascimento, u_sexo) VALUES (?, ?, ?, ?, ?, ?, ?)");
+	// Benefícios: Previne ataques de SQL Injection, protege dados sensíveis e melhora performance com queries pré-compiladas.
 	public boolean insert(Usuario usuario) {
 		boolean status = false;
 		try {  
@@ -115,6 +120,13 @@ public class UsuarioDAO extends DAO {
 	}
 	
 	
+	// COMENTÁRIO DE CODE REVIEW: Múltiplos problemas de segurança e lógica.
+	// 1. SQL Injection: concatenação direta permite ataques.
+	// 2. Inconsistência: tenta atualizar campo "login" mas tabela usa "u_email".
+	// 3. WHERE sem aspas: u_nome = " + usuario.getNome() causará erro SQL.
+	// 4. Atualização parcial: não atualiza senha, dataDeNascimento e outros campos.
+	// 5. Usar ID na cláusula WHERE em vez de nome para identificar usuário único.
+	// Benefícios: Previne SQL Injection, evita erros de SQL, garante atualização completa e identifica usuários de forma única.
 	public boolean update(Usuario usuario) {
 		boolean status = false;
 		try {  
@@ -148,6 +160,12 @@ public class UsuarioDAO extends DAO {
 	}
 	
 	
+	// COMENTÁRIO DE CODE REVIEW: Vulnerabilidade crítica de segurança - SQL Injection para autenticação.
+	// A concatenação direta permite SQL Injection, expondo o sistema a ataques de autenticação bypass.
+	// Exemplo de ataque: nome = "admin' OR '1'='1" permitiria acesso sem senha válida.
+	// Sugestão: Usar PreparedStatement obrigatoriamente e considerar usar email em vez de nome para login.
+	// O comentário na linha 53 do Principal.java demonstra conhecimento desta vulnerabilidade mas não está corrigida.
+	// Benefícios: Previne bypass de autenticação, protege sistema contra acesso não autorizado e melhora segurança geral.
 	public boolean autenticar(String nome, String senha) {
 		boolean resp = false;
 		

@@ -18,6 +18,12 @@ public class ProdutoService {
 		produtoDAO = new ProdutoDAO();
 	}
 
+	// COMENTÁRIO DE CODE REVIEW: Problemas de validação e erro de nomenclatura.
+	// 1. Falta validação: não verifica se os parâmetros são nulos antes de fazer parse - pode causar NullPointerException.
+	// 2. Erro de nomenclatura: queryParams("dataValidade") deveria ser "preco" - está pegando o parâmetro errado.
+	// 3. Falta tratamento de NumberFormatException para entradas inválidas.
+	// Sugestão: Validar parâmetros obrigatórios e retornar 400 Bad Request para entradas inválidas.
+	// Benefícios: Previne erros de runtime, melhora robustez da API e fornece feedback claro para clientes sobre entradas inválidas.
 	public Object add(Request request, Response response) {
 		int ID = Integer.parseInt(request.queryParams("ID"));
 		String nome = request.queryParams("nome");
@@ -53,7 +59,7 @@ public class ProdutoService {
             		"</produto>\n";
         } else {
             response.status(404); // 404 Not found
-            return "Produto " + id + " n�o encontrado.";
+            return "Produto " + id + " n�o encontrado.";
         }
 
 	}
@@ -74,11 +80,17 @@ public class ProdutoService {
             return id;
         } else {
             response.status(404); // 404 Not found
-            return "Produto n�o encontrado.";
+            return "Produto n�o encontrado.";
         }
 
 	}
 
+	// COMENTÁRIO DE CODE REVIEW: Inconsistência entre busca e deleção.
+	// O método busca produto por ID mas deleta por NOME (produto.getNome()).
+	// Isso pode deletar produtos com mesmo nome ou falhar se o método delete() espera ID.
+	// Verificando ProdutoDAO.delete(), ele espera ID mas usa coluna "u_Id" incorreta.
+	// Sugestão: Alterar para produtoDAO.delete(id) para manter consistência.
+	// Benefícios: Garante deleção precisa, evita deleções incorretas e mantém consistência na API.
 	public Object remove(Request request, Response response) {
         int id = Integer.parseInt(request.params(":id"));
 
@@ -92,7 +104,7 @@ public class ProdutoService {
         	return id;
         } else {
             response.status(404); // 404 Not found
-            return "Produto n�o encontrado.";
+            return "Produto n�o encontrado.";
         }
 	}
 
